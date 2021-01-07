@@ -1,0 +1,58 @@
+---
+# OpenShift Version
+version_openshift: "{{ lookup('env', 'varVerOpenshift') }}"
+# openshift-install binary to run
+openshift_install_binary: /usr/local/bin/openshift-install 
+openshift_client_binary: /usr/local/bin/oc 
+
+# Bash ENV Lookups
+local_home: "{{ lookup('env', 'HOME') }}"
+local_user: "{{ lookup('env', 'USER') }}"
+
+# Ansible Playbook Run Variables
+name_vendor: "RedHat"
+ansible_name: " {{ name_vendor }} | Konductor | Infra Automation"
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+# Linux Container Pull Secrets
+registry_auth_file: "{{ dir_secrets }}/docker/config.json }}"
+
+#registry_host_fqdn: '{{ vault_registry_host_fqdn }}'
+registry_host_fqdn: "{{ vault_registry_host_fqdn }}"
+registry_admin_username: "{{ vault_registry_admin_username }}"
+registry_admin_password: "{{ vault_registry_admin_password }}"
+
+local_repository: 'openshift4'
+registry_host_port: '5000'
+oc_client_binary: "files/openshift-client-linux-4.6.4.tar.gz"
+ocp_release_version: 4.6.4
+registry_container_auth_dir: '/auth'
+registry_container_cert_dir: '/certs'
+dir_bundle_location: "/data/bundle"
+registry_container_name: 'mirror-registry'
+registry_container_image: 'docker.io/library/registry:2'
+registry_container_dir: '/var/lib/registry'
+install_opm: "false"
+opm_client_binary: "files/opm"
+install_grpcurl: "false"
+grpcurl_binary: "files/grpcurl_1.7.0_linux_x86_64.tar.gz"
+operator_registries_to_mirror:
+  redhat-operators:
+    source: registry.redhat.io/redhat/redhat-operator-index:v4.6
+    container_port: 50051
+    mirrored_operator_list: "3scale-operator,apicast-operator,amq-streams,businessautomation-operator,cluster-kube-descheduler-operator,cluster-logging,clusterresourceoverride,codeready-workspaces,compliance-operator,container-security-operator,elasticsearch-operator,file-integrity-operator,jaeger-product,kiali-ossm,kubevirt-hyperconverged,local-storage-operator,metering-ocp,nfd,ocs-operator,ptp-operator,rhsso-operator,serverless-operator,servicemeshoperator,sriov-network-operator"
+default_operator_registry_username: "{{ vault_default_operator_registry_username }}"
+default_operator_registry_password: "{{ vault_default_operator_registry_password }}"
+default_operator_registry: 'registry.redhat.io'
+bundle_file_name: 'operators-bundle.tar.xz'
+bundle_file_location: '/data/bundle/operators-bundle.tar.xz'
+dir_bundle_staging: "/tmp/bundles"
+local_olm_repository: 'olm-mirror'
+source_operators_repository: 'redhat'
+source_operator_index: 'redhat-operator-index'
+source_operator_index_tag: 'v4.6'
+
+#####################################################################################################
+# End of user configurable variables
+#####################################################################################################
+

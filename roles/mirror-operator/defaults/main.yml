@@ -1,0 +1,22 @@
+---
+# defaults file for mirror-operator
+ansible_name_module: 'mirror ocp4 operator content'
+bundle_file_name: 'operators-bundle.tar.xz'
+default_operator_registry: 'registry.redhat.io'
+registry_container_name: 'mirror-registry'
+registry_container_image: 'docker.io/library/registry:2'
+registry_container_dir: '/var/lib/registry'
+dir_bundle_location: '/data/bundle'
+
+dir_bundle_staging: '/tmp/bundles'
+bundle_file_location: '/data/bundle/operators-bundle.tar.xz'
+registry_host_port: '5000'
+source_operators_repository: 'redhat'
+source_operator_index: 'redhat-operator-index'
+source_operator_index_tag: 'v4.6'
+local_olm_repository: 'registry.redhat.io'
+operator_registries_to_mirror:
+  redhat-operators:
+    source: 'registry.redhat.io/redhat/redhat-operator-index:v4.6'
+    container_port: 50051
+    mirrored_operator_list: "3scale-operator,apicast-operator,amq-streams,businessautomation-operator,cluster-kube-descheduler-operator,cluster-logging,clusterresourceoverride,codeready-workspaces,compliance-operator,container-security-operator,elasticsearch-operator,file-integrity-operator,jaeger-product,kiali-ossm,kubevirt-hyperconverged,local-storage-operator,metering-ocp,nfd,ocs-operator,ptp-operator,rhsso-operator,serverless-operator,servicemeshoperator,sriov-network-operator"

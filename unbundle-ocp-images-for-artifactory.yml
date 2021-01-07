@@ -1,0 +1,18 @@
+#!/usr/local/bin/ansible-playbook --inventory=inventory
+- name: ' Konductor | Provision UPI Infra | unbundle-ocp-images-for-operators.yml' 
+  hosts: localhost 
+  become: yes
+  vars_files:
+    - 'vars/global.yml'
+  vars:
+    module: "unbundle images for artifactory"
+    ansible_name_module: " Konductor | Unbundle Images | {{ module }}"
+    bundle_file_location: "/data/bundle/artifactory/artifactory-bundle.tar.xz"
+    dir_bundle_staging: "/tmp/bundles"
+    release_image_repository: "openshift-release-dev"
+
+  tasks:
+    - name: Push bundle content into artifactory 
+      import_role:
+        name: mirror-ocp4-content-artifactory
+        tasks_from: unbundle-ocp-images.yml 

@@ -1,0 +1,14 @@
+# Use this sample file to create your vaulted inventory and then 
+# run your playbook passing the vault file as an inventory file 
+# and provide the vault option like --vault-id @prompt
+# Ovirt Cluster Info
+
+# Registry Config
+vault_registry_host_fqdn: ""
+vault_registry_secret: ""
+vault_registry_admin_username: ""
+vault_registry_admin_password: ""
+
+#RH Registry info
+vault_default_operator_registry_username: ""
+vault_default_operator_registry_password: ""
