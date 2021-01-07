@@ -5,7 +5,6 @@
 
 # Registry Config
 vault_registry_host_fqdn: ""
-vault_registry_secret: ""
 vault_registry_admin_username: ""
 vault_registry_admin_password: ""
 

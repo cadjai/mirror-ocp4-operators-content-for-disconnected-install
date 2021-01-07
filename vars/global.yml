@@ -14,18 +14,12 @@ name_vendor: "RedHat"
 ansible_name: " {{ name_vendor }} | Konductor | Infra Automation"
 ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
-# Linux Container Pull Secrets
-registry_auth_file: "{{ dir_secrets }}/docker/config.json }}"
-
-#registry_host_fqdn: '{{ vault_registry_host_fqdn }}'
 registry_host_fqdn: "{{ vault_registry_host_fqdn }}"
+registry_host_port: '5000'
 registry_admin_username: "{{ vault_registry_admin_username }}"
 registry_admin_password: "{{ vault_registry_admin_password }}"
 
-local_repository: 'openshift4'
-registry_host_port: '5000'
 oc_client_binary: "files/openshift-client-linux-4.6.4.tar.gz"
-ocp_release_version: 4.6.4
 registry_container_auth_dir: '/auth'
 registry_container_cert_dir: '/certs'
 dir_bundle_location: "/data/bundle"
