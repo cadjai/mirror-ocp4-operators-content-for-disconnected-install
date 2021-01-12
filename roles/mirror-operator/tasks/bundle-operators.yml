@@ -155,10 +155,10 @@
 
 - name: '{{ ansible_name_module }} | push original operator index image bundle '
   block:
-    - name: '{{ ansible_name_module }} | Mirror operator catalog | oc:adm:catalog:mirror'
+    - name: '{{ ansible_name_module }} | Mirror operator catalog | oc:image:mirror'
       command: >
         oc image mirror  \
-        -a {{ default_operator_registry_auth_config }} \
+        -a "{{ default_operator_registry_auth_config }}" \
         {{ item.value.source }} \
         localhost:5000/{{ item.value.source.split('/')[1] }}/{{ item.value.source.split('/')[2] }} \
         --insecure=true
@@ -196,7 +196,7 @@
       shell: >
         jq -c --argjson \
            var "$(jq .auths {{ hostvars[inventory_hostname].ansible_env.HOME }}/.docker/oprconfig-{{ item.key }}.json)" \
-               '.auths += $var' {{ default_operator_registry_auth_config }} \
+               '.auths += $var' "{{ default_operator_registry_auth_config }}" \
                | jq '.' >> "{{ dir_bundle_staging }}/operators-registry.json"
       with_dict:
         - "{{ operator_registries_to_mirror }}"
@@ -212,7 +212,7 @@
       command: >
         oc adm catalog mirror localhost:5000/{{ item.value.source.split('/')[1] }}/{{ item.value.source.split('/')[2] }} \
          localhost:5000 \
-        -a {{ operators_registries_auth_config }} \
+        -a "{{ operators_registries_auth_config }}" \
          --filter-by-os="linux/amd64" \
          --insecure=true
       with_dict:
