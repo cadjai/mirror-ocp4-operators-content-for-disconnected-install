@@ -120,7 +120,7 @@
 - name: '{{ ansible_name_module }} | Create Package index '
   shell: >
     grpcurl -plaintext localhost:{{ item.value.container_port }} api.Registry/ListPackages \
-    > {{ dir_bundle_location | d('/tmp') }}/packages-{{ item.key }}.out
+    > "{{ dir_bundle_location | d('/tmp') }}/packages-{{ item.key }}.out"
   with_dict:
     - "{{ operator_registries_to_mirror }}"
   when:
@@ -197,7 +197,7 @@
         jq -c --argjson \
            var "$(jq .auths {{ hostvars[inventory_hostname].ansible_env.HOME }}/.docker/oprconfig-{{ item.key }}.json)" \
                '.auths += $var' {{ default_operator_registry_auth_config }} \
-               | jq '.' >> {{ dir_bundle_staging }}/operators-registry.json
+               | jq '.' >> "{{ dir_bundle_staging }}/operators-registry.json"
       with_dict:
         - "{{ operator_registries_to_mirror }}"
       when:
@@ -240,7 +240,7 @@
         localhost:5000/{{ registry_container_image.split('/')[1] }}/{{ registry_container_image.split('/')[2] }}
 
 - name: '{{ ansible_name_module }} | command: copy | copy manifest files '
-  command: cp -r {{ (item.value.source.split('/')[2]).split(':')[0] }} {{ registry_container_dir }}/  
+  command: cp -r {{ (item.value.source.split('/')[2]).split(':')[0] }}-manifests {{ registry_container_dir }}/  
   with_dict:
     - "{{ operator_registries_to_mirror }}"
   when:
@@ -252,7 +252,7 @@
   become: yes
   command: > 
     tar -c --use-compress-program='pigz -9' -v \
-      -f {{ dir_bundle_location }}/{{ bundle_file_name }} \
+      -f "{{ dir_bundle_location }}/{{ bundle_file_name }}" \
       -C {{ registry_container_dir }} . 
   args:
     creates: "{{ dir_bundle_location }}/{{ bundle_file_name }}"
