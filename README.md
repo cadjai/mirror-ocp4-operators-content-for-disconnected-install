@@ -23,7 +23,8 @@ For the operator bundle tasks:
 - registry_container_image: The name of the registry container to run (e.g. docker.io/library/registry:2).  
 - operator_registries_to_mirror: The various operators that will be mirrored (e.g.redhat-operators, community-operators, redhat-certified-operators...). This is a dictionary with keys like source, container_port, and mirrored_operartor_list where :  
   - source is the FQDN of the registry and repository and version of the registry index being used to mirror the operator content (e.g. registry.redhat.io/redhat/redhat-operator-index:v4.6)
-  - container_port is the name of the port on the controller to bind the container to (e.g. 50051). It has to be different for each operator index container.
+  - container_port is the name of the port published by the container (e.g. 50051).
+  - host_port is the name of the port on the controller to bind the container to (e.g. 50051). It has to be different for each operator index container.
   - mirrored_operator_list is the list of operators to be mirrored if pruning operators to provided comma separated list (e.g. '3scale-operator,apicast-operator').
 - opm_client_binary: The path to the opm client binary to be used to mirror operators if not already installed on the controller.  
 - grpcurl_binary: The path to the grpcurl client binary to be used to prune operators if pruning a subset of operators.  
