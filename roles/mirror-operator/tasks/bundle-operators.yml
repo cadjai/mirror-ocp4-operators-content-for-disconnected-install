@@ -192,7 +192,7 @@
       command: >
         oc adm catalog mirror localhost:5000/{{ item.value.source.split('/')[1] }}/{{ item.value.source.split('/')[2] }} \
          localhost:5000 \
-        -a "{{ operators_registries_auth_config }}" \
+        -a "{{ default_operator_registry_auth_config }}" \
          --filter-by-os="linux/amd64" \
          --insecure=true
       with_dict:
