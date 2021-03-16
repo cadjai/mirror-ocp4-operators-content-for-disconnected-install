@@ -186,6 +186,14 @@
         - item.value.source is defined and item.value.source != ""
         - not item.value.mirrored_operator_list is defined or item.value.mirrored_operator_list == ""
       register: catalog_mirrored
+
+    - name: '{{ ansible_name_module }} | Mirror operator catalog | set_fact:manifest_folder'
+      set_fact:
+        manifest_dirs: "{{ manifest_dirs | d([]) + [(item.stdout_lines[-1].split(' ')[-1])] }}"
+      with_items: "{{ catalog_mirrored.results }}"
+      when:
+        - item.stdout_lines is defined
+      register: manifest_dir_facts_out
   
 - name: '{{ ansible_name_module }} | Mirror operator catalog | local registry '
   block:
@@ -225,6 +233,15 @@
         - item.value.source is defined and item.value.source != ""
       register: catalog_mirrored
 
+    - name: '{{ ansible_name_module }} | Mirror operator catalog | set_fact:manifest_folder'
+      set_fact:
+        manifest_dirs: "{{ manifest_dirs | d([]) + [(item.stdout_lines[-1].split(' ')[-1])] }}"
+      with_items: "{{ catalog_mirrored.results }}"
+      when:
+        - item.stdout_lines is defined
+      register: manifest_dir_facts_out
+  
+
 - name: '{{ ansible_name_module }} | mirror registry container '
   block:
     - name: '{{ ansible_name_module }} | podman:tag | tag container image registry image'
@@ -242,13 +259,9 @@
         localhost:5000/{{ registry_container_image.split('/')[1] }}/{{ registry_container_image.split('/')[2] }}
 
 - name: '{{ ansible_name_module }} | command: copy | copy manifest files '
-  command: cp -r {{ (item.value.source.split('/')[2]).split(':')[0] }}-manifests {{ registry_container_dir }}/  
-  with_dict:
-    - "{{ operator_registries_to_mirror }}"
-  when:
-    - item.key is defined and item.key != ""
-    - item.value.source is defined and item.value.source != ""
-  register: catalog_mirrored
+  command: cp -r {{ (item }} {{ registry_container_dir }}/
+  loop: "{{ manifest_dirs }}"c
+  register: manifest_copied
 
 - name: '{{ ansible_name_module }} | archive:xz | create operator image bundle '
   become: yes
