@@ -1,17 +1,16 @@
 #!/usr/local/bin/ansible-playbook --inventory=inventory
-- name: ' Konductor | Provision UPI Infra | bundle-operators.yml' 
+- name: ' Konductor | Provision UPI Infra | push-operators-to-registry.yml' 
   hosts: localhost 
   become: yes
   vars_files:
     - 'vars/vault.yml'
     - 'vars/global.yml'
   vars:
-    ansible_python_interpreter: /usr/bin/python3
-    module: "bundle-operators"
+    module: "push to registry"
     ansible_name_module: " Konductor | Provision UPI Infra | {{ module }}"
 
   tasks:
-    - name: Create operator bundle
+    - name: Decompress operator bundle
       import_role:
-        name: mirror-operator 
-        tasks_from: bundle-operators.yml
+        name: mirror-operator
+        tasks_from: push-operators.yml
