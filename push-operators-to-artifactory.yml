@@ -12,6 +12,7 @@
     registry_container_name: "mirror-registry"
     dir_bundle_staging: "/tmp/bundles"
     process_operator_bundle: "true"
+    local_repository: 'openshift4/custom-operators'
 
   tasks:
     - name: Push operator bundle content into artifactory

@@ -4,7 +4,7 @@ roles:
     scm: git
     name: mirror-ocp4-content-artifactory 
 
-collections:
+#collections:
   #- name: https://github.com/nginxinc/ansible-collection-nginx.git
   #- name: nginxinc.nginx_core 
   #  type: git
