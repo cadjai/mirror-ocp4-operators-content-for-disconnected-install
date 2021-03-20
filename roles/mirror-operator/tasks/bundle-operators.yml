@@ -259,8 +259,8 @@
         localhost:5000/{{ registry_container_image.split('/')[1] }}/{{ registry_container_image.split('/')[2] }}
 
 - name: '{{ ansible_name_module }} | command: copy | copy manifest files '
-  command: cp -r {{ (item }} {{ registry_container_dir }}/
-  loop: "{{ manifest_dirs }}"c
+  command: cp -r {{ item }} {{ registry_container_dir }}/
+  loop: "{{ manifest_dirs }}"
   register: manifest_copied
 
 - name: '{{ ansible_name_module }} | archive:xz | create operator image bundle '
