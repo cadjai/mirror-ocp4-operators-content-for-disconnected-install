@@ -4,10 +4,10 @@
     name:
       - tar 
       - podman
-      - jq
-      - lzma
-      - python-backports-lzma
-      - xz-devel
+     #- jq
+     #- lzma
+     #- python-backports-lzma
+     #- xz-devel
     state: present
   when:
     - not inventory_hostname in ['localhost', 'local']

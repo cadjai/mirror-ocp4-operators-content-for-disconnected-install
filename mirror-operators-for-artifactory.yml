@@ -1,5 +1,5 @@
 #!/usr/local/bin/ansible-playbook --inventory=inventory
-- name: ' Konductor | Provision UPI Infra | bundle-operators.yml' 
+- name: ' Konductor | Provision UPI Infra | mirror-operators-for-artifactory.yml' 
   hosts: localhost 
   become: yes
   vars:
@@ -7,7 +7,7 @@
   vars_files:
     - 'vars/global.yml'
   vars:
-    module: "bundle-operators"
+    module: "mirror-operators-for-artifactory"
     ansible_name_module: " Konductor | Provision UPI Infra | {{ module }}"
     dir_bundle_location: "/data/bundle"
     registry_container_name: 'mirror-registry'
@@ -50,5 +50,5 @@
     - name: Create operator bundle for artifactory 
       import_role:
         name: mirror-ocp4-content-artifactory
-        tasks_from: bundle-operators.yml
+        tasks_from: mirror-operators.yml
 

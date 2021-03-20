@@ -1,5 +1,5 @@
 #!/usr/local/bin/ansible-playbook --inventory=inventory
-- name: ' Konductor | Provision UPI Infra | unbundle-operators.yml' 
+- name: ' Konductor | Provision UPI Infra | push-operators-to-registry.yml' 
   hosts: localhost 
   become: yes
   vars_files:
@@ -13,4 +13,4 @@
     - name: Decompress operator bundle
       import_role:
         name: mirror-operator
-        tasks_from: unbundle-operators.yml
+        tasks_from: push-operators-to-registry.yml

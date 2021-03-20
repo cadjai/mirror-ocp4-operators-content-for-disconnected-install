@@ -57,7 +57,7 @@ To create the operator bundle use the sample play below:
          - name: Create operator bundle
            import_role:
              name: mirror-operator
-             tasks_from: bundle-operators.yml
+             tasks_from: mirror-operators.yml
              
 To push the operator bundle content into the destination registry use the sample play below:
 
@@ -66,7 +66,7 @@ To push the operator bundle content into the destination registry use the sample
          - name: Push operator bundle content into the destination registry
            import_role:
              name: mirror-operator
-             tasks_from: unbundle-operators.yml
+             tasks_from: push-operators.yml
              
 
 License

@@ -1,5 +1,5 @@
 #!/usr/local/bin/ansible-playbook --inventory=inventory
-- name: ' Konductor | Provision UPI Infra | bundle-operators.yml' 
+- name: ' Konductor | Provision UPI Infra | mirror-operators.yml' 
   hosts: localhost 
   become: yes
   vars_files:
@@ -14,4 +14,4 @@
     - name: Create operator bundle
       import_role:
         name: mirror-operator 
-        tasks_from: bundle-operators.yml
+        tasks_from: mirror-operators.yml
