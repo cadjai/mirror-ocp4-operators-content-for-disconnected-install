@@ -19,7 +19,7 @@ registry_host_port: '5000'
 registry_admin_username: "{{ vault_registry_admin_username }}"
 registry_admin_password: "{{ vault_registry_admin_password }}"
 
-oc_client_binary: "files/openshift-client-linux-4.6.4.tar.gz"
+oc_client_binary: "files/openshift-client-linux-4.7.4.tar.gz"
 registry_container_auth_dir: '/auth'
 registry_container_cert_dir: '/certs'
 dir_bundle_location: "/data/bundle/"
@@ -32,28 +32,28 @@ install_grpcurl: "false"
 grpcurl_binary: "files/grpcurl_1.7.0_linux_x86_64.tar.gz"
 operator_registries_to_mirror:
   redhat-operators:
-    source: registry.redhat.io/redhat/redhat-operator-index:v4.6
+    source: registry.redhat.io/redhat/redhat-operator-index:v4.7
     container_port: 50051
     host_port: 50051
-    mirrored_operator_list: "3scale-operator,apicast-operator,amq-streams,businessautomation-operator,cluster-kube-descheduler-operator,cluster-logging,clusterresourceoverride,codeready-workspaces,compliance-operator,container-security-operator,elasticsearch-operator,file-integrity-operator,jaeger-product,kiali-ossm,kubevirt-hyperconverged,local-storage-operator,metering-ocp,nfd,ocs-operator,ptp-operator,rhsso-operator,serverless-operator,servicemeshoperator,sriov-network-operator"
+    mirrored_operator_list: "3scale-operator,advanced-cluster-management,amq-streams,businessautomation-operator,cluster-kube-descheduler-operator,cluster-logging,clusterresourceoverride,codeready-workspaces,compliance-operator,container-security-operator,elasticsearch-operator,file-integrity-operator,jaeger-product,kiali-ossm,local-storage-operator,nfd,ocs-operator,ptp-operator,rhsso-operator,serverless-operator,servicemeshoperator,web-terminal,mtc-operator,costmanagement-metrics-operator,cincinnati-operator,performance-addon-operator,rhacs-operator"
     mirror: true
   community-operators:
-    source: 'registry.redhat.io/redhat/community-operator-index:latest'
+    source: 'registry.redhat.io/redhat/community-operator-index:v4.7'
     container_port: 50051
     host_port: 40051
-    mirrored_operator_list: "group-sync-operator,keycloak-operator,koku-metrics-operator,konveyor-forklift-operator,konveyor-operator,namespace-configuration-operator,prisma-cloud-compute-console-operator,prometheus,prometheus-exporter-operator,splunk"
+    mirrored_operator_list: "group-sync-operator,keycloak-operator,koku-metrics-operator,konveyor-forklift-operator,konveyor-operator,namespace-configuration-operator,prometheus,prometheus-exporter-operator,splunk,argocd-operator,argocd-operator-helm,jupyterlab-operator"
     mirror: true
   market-operators:
-    source: 'registry.redhat.io/redhat/redhat-marketplace-index:v4.6'
+    source: 'registry.redhat.io/redhat/redhat-marketplace-index:v4.7'
     container_port: 50051
     host_port: 30051
     mirrored_operator_list: ""
     mirror: false
   certified-operators:
-    source: 'registry.redhat.io/redhat/certified-operator-index:v4.6'
+    source: 'registry.redhat.io/redhat/certified-operator-index:v4.7'
     container_port: 50051
     host_port: 20051
-    mirrored_operator_list: "anchore-engine,elasticsearch-eck-operator-certified,falco-certified,gitlab-operator,gitlab-runner-operator,gpu-operator-certified,nginx-ingress-operator,node-red-operator-certified,openshiftartifactoryha-operator,openshiftpipeline-operator,openshiftxray-operator,prisma-cloud-compute-console-operator.v2.0.1,redhat-marketplace-operator,rocketchat-operator-certified,splunk-certified"
+    mirrored_operator_list: "anchore-engine,elasticsearch-eck-operator-certified,falco-certified,gitlab-runner-operator,gpu-operator-certified,nginx-ingress-operator,node-red-operator-certified,openshiftartifactoryha-operator,openshiftpipeline-operator,openshiftxray-operator,prisma-cloud-compute-console-operator.v2.0.1,redhat-marketplace-operator,rocketchat-operator-certified,splunk-certified,sysdig-certified"
     mirror: true
     image_registry: "registry.connect.redhat.com"
 default_operator_registry_username: "{{ vault_default_operator_registry_username }}"
@@ -65,7 +65,7 @@ dir_bundle_staging: "/tmp/staging"
 local_olm_repository: 'olm-mirror'
 source_operators_repository: 'redhat'
 source_operator_index: 'redhat-operator-index'
-source_operator_index_tag: 'v4.6'
+source_operator_index_tag: 'v4.7'
 
 #####################################################################################################
 # End of user configurable variables
